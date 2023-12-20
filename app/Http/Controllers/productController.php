@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class productController extends Controller
@@ -106,6 +107,8 @@ class productController extends Controller
         'quantity'=> $request->qty,
         'customer_name' => $request->name,
         'customer_phone' => $request->phone,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
     ]);
 
     DB::table('products')->where('id', $id)->update(['quatity' => $product->quatity - $request->qty]);

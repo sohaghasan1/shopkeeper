@@ -20,7 +20,7 @@ use App\Http\Controllers\productController;
 //     return view('welcome');
 // });
 
-Route::get('/admin', [dashboardController::class,'index']);
+Route::get('/admin', [dashboardController::class,'index'])->name('index');
 
 Route::get('/', [dashboardController::class,'home']);
 
