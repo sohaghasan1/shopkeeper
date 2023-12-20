@@ -29,6 +29,8 @@ Route::get('/add', [dashboardController::class,'addProducts'])->name('add');
 Route::get('/all', [dashboardController::class,'allProducts'])->name('all');
 Route::get('/category', [dashboardController::class,'category'])->name('category');
 
+
+
 Route::POST('/add', [productController::class,'products'])->name('addproduct');
 Route::POST('/category', [productController::class,'category'])->name('addcategory');
 Route::get('/all', [productController::class,'allProducts'])->name('all');
@@ -36,3 +38,8 @@ Route::get('/update/{id}', [productController::class,'edit'])->name('edit');
 Route::POST('/update/{id}', [productController::class,'update'])->name('update');
 
 Route::DELETE('/all/{id}', [productController::class,'destroy'])->name('delete');
+
+Route::get('/order/{id}', [productController::class,'order'])->name('order');
+
+Route::POST('/order/{id}', [productController::class,'checkout'])->name('checkout');
+Route::get('/order_list', [productController::class,'order_list'])->name('order_list');

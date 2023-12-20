@@ -22,13 +22,13 @@ class dashboardController extends Controller
     }
 
     public function allProducts(){
-
         return view("admin.pages.all_pro");
     }
 
     public function category(){
         return view("admin.pages.category");
     }
+
 
 
 

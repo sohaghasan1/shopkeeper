@@ -64,10 +64,12 @@ class productController extends Controller
 
         $this->validate($request, [
             'price'=> 'integer|gt:0',
+            'qty'=> 'integer|gt:0',
         ]);
         
         DB::table('products')->where('id', $request->id)->update([
             'price'=> $request->price,
+            'quatity'=> $request->qty,
         ]);
         return redirect()->back()->with('success', 'Updated');
     }
@@ -83,9 +85,44 @@ class productController extends Controller
        }else{
         return redirect()->back()->with('error','Product not delete');
        }
-
     }
 
+
+    public function order($id){
+        $product = DB::table('products')->where('id', $id)->first();
+        return view("admin.pages.checkout", compact("product"));
+    }
+
+    public function checkout(Request $request, $id)
+{
+    $product = DB::table('products')->where('id', $id)->first();
+    $this->validate($request, [
+        "qty"=> "required|integer|max:".$product->quatity,
+    ]);
+
+    DB::table('sales')->insert([
+        'product_id' => $product->id,
+        'ammount'=> $product->price * $request->qty,
+        'quantity'=> $request->qty,
+        'customer_name' => $request->name,
+        'customer_phone' => $request->phone,
+    ]);
+
+    DB::table('products')->where('id', $id)->update(['quatity' => $product->quatity - $request->qty]);
+
+    return redirect()->back()->with('success','Order Successfully Done');
+}
+
+
+    public function order_list(){
+        $products = DB::table('sales')
+        ->join('products', 'sales.product_id', '=', 'products.id')
+        ->select('sales.*', 'products.name','products.image')
+        ->get();
+
+        return view('admin.pages.order_list', compact('products'));
+    
+    }
     
    
 

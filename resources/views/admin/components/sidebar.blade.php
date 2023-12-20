@@ -29,6 +29,11 @@
                          <i class="align-middle" data-feather="user"></i> <span class="align-middle">Category</span>
                         </a>
 					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('order_list')}}">
+                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Order List</span>
+                        </a>
+					</li>
 				</ul>
 
 			

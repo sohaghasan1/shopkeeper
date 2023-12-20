@@ -18,6 +18,11 @@
                     <div class="col-md-6">
                         <form action="{{route('update', $update_products->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
+
+                            <input type="text" placeholder="Quantity" value="{{$update_products->quatity}}" name="qty" class="form-control mb-3">
+                            @error('qty')
+                                <p>{{$message}}</p>
+                            @enderror
                          
                             <input type="text" placeholder="Price" value="{{$update_products->price}}" name="price" class="form-control mb-3">
                             @error('price')
