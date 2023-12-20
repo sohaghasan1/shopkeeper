@@ -34,3 +34,5 @@ Route::POST('/category', [productController::class,'category'])->name('addcatego
 Route::get('/all', [productController::class,'allProducts'])->name('all');
 Route::get('/update/{id}', [productController::class,'edit'])->name('edit');
 Route::POST('/update/{id}', [productController::class,'update'])->name('update');
+
+Route::DELETE('/all/{id}', [productController::class,'destroy'])->name('delete');

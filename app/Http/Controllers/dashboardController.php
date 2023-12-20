@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardController extends Controller
 {
@@ -16,10 +17,12 @@ class dashboardController extends Controller
 
 
     public function addProducts(){
-        return view("admin.pages.add_product");
+       $categories = DB::table("category")->get();
+        return view("admin.pages.add_product", compact("categories"));
     }
 
     public function allProducts(){
+
         return view("admin.pages.all_pro");
     }
 

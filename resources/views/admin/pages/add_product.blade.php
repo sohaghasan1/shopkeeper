@@ -34,7 +34,15 @@
                             @error('qty')
                                 <p>{{$message}}</p>
                             @enderror
-                            <input type="text" placeholder="Category" name="category" class="form-control mb-3">
+
+
+                            <select name="category" class="form-control mb-3" id="">
+                                <option disabled selected>Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+
+                            </select>
                             @error('category')
                                 <p>{{$message}}</p>
                             @enderror

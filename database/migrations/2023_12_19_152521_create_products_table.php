@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('price');
             $table->integer('quatity')->default(0);
-            $table->foreignId('category_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('category')->onDelete('cascade');
             $table->timestamps();
         });
     }
